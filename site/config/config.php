@@ -43,3 +43,11 @@ c::set('languages', [
     'url'     => '/de',
   ],
 ]);
+
+// Enable Kirby StaticBuilder locally
+c::set('staticbuilder', true);
+c::set('staticbuilder.baseurl', './');
+c::set('staticbuilder.outputdir', 'docs');
+// StaticBuilder requires Kirby’s cache to be disabled
+c::set('cache', false);
+c::set('debug'. true);

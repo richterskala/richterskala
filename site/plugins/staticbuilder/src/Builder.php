@@ -34,7 +34,7 @@ class Builder
     protected $langs = [];
 
     // Config (there is a 'staticbuilder.[key]' for each one)
-    protected $outputdir  = 'static';
+    protected $outputdir  = 'docs';
     protected $baseurl    = '/';
     protected $assets     = ['assets', 'content', 'thumbs'];
     protected $extension  = '/index.html';
@@ -78,7 +78,7 @@ class Builder
         $dir = $this->isAbsolutePath($dir) ? $dir : $this->root . '/' . $dir;
         $folder = new Folder($this->normalizePath($dir));
 
-        if ($folder->name() !== 'static') {
+        if ($folder->name() !== 'docs') {
             throw new Exception('StaticBuilder: outputdir MUST be "static" or end with "/static"');
         }
         if ($folder->exists() === false) {
@@ -377,7 +377,7 @@ class Builder
             'type'   => 'page',
             'status' => '',
             'source' => $source,
-            'dest'   => str_replace($this->outputdir, 'static', $file),
+            'dest'   => str_replace($this->outputdir, 'docs', $file),
             'size'   => null,
             'title'  => $page->title()->value,
             'uri'    => $page->uri(),
@@ -425,7 +425,7 @@ class Builder
             foreach ($files as $f) {
                 $dest = $dir . '/' . $f->filename();
                 if ($f->copy($dest)) {
-                    $log['files'][] = str_replace($this->outputdir, 'static', $dest);
+                    $log['files'][] = str_replace($this->outputdir, 'docs', $dest);
                 }
             }
         }
@@ -456,7 +456,7 @@ class Builder
             // Use unnormalized, relative paths in log, because they
             // might help understand why a file was ignored
             'source' => $from,
-            'dest'   => 'static/',
+            'dest'   => 'docs/',
             'size'   => null
         ];
 
